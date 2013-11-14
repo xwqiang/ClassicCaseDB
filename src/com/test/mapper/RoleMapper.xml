@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.RoleDAO">
+	<select id="getRoleList" resultType="com.test.model.Role">
+		select * from role 
+	</select>
+	
+	<insert id="insertRole" parameterType="com.test.model.Role">
+		insert into role (role_name,insert_time,update_time) 
+		values(#{role_name},now(),now())
+	</insert>
+	
+	<delete id="deleteRoleById" parameterType="com.test.model.Role">
+		delete from role where id = #{id}
+	</delete>
+	
+	<select id="getRoleById" resultType="com.test.model.Role">
+		select * from role where id=#{id}
+	</select>
+	
+	<update id="updateRole" parameterType="com.test.model.Role">
+		update role set role_name =#{role_name},update_time=#{update_time} where id=#{id}
+	</update>
+	
+</mapper> 

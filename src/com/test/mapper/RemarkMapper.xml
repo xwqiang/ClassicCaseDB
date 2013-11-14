@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.RemarkDAO">
+	<select id="getRemarkListBySolutionId" resultType="com.test.model.Remark">
+		select * from remark
+		<where>
+			<if test="solution_id!=null and solution_id!=0">
+				solution_id=#{solution_id}
+			</if>
+		</where>
+		order by insert_time desc
+		<if test="start!=null and end !=null and end !=0">
+		 	limit #{start},#{end}
+		 </if>
+	</select>
+	
+	<insert id="insertRemark" parameterType="com.test.model.Remark" useGeneratedKeys="true" keyProperty="sn">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+		insert into remark(solution_id,remark,user_id,insert_time)
+		values
+		(#{solution_id},#{remark},#{user_id},now())
+	</insert>
+	
+	<select id="getRemarkById" resultType="com.test.model.Remark" parameterType="int">
+		select * from remark where id=#{id}
+	</select>
+	
+	<select id="countRemarkListBySolutionId" resultType="int" parameterType="Map">
+		select count(*) from remark
+		<where>
+			<if test="args!=null and args.solution_id!=null and args.solution_id!=0">
+				solution_id=#{solution_id}
+			</if>
+		</where>
+	</select>
+	
+	<delete id="deleteRemarkByRolutionId">
+		delete from remark 
+		<where>
+			<if test="solution_id!=null and solution_id!=0">
+				solution_id =#{solution_id}
+			</if>
+		</where>
+	</delete>
+</mapper> 

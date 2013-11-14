@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.UserDAO">
+	<select id="queryUserById" resultType="com.test.model.UserInfo" parameterType="com.test.model.UserInfo">
+		select * from user_info where user_id = #{user_id}
+	</select>
+	
+	<insert id="insertUserInfo"  parameterType="com.test.model.UserInfo">
+		insert into user_info(user_id,user_name,user_pwd,insert_time,update_time) values(#{user_id},#{user_name},#{user_pwd},now(),now())
+	</insert>
+	
+	<select id="getUserInfoByUserId" parameterType="string" resultType="com.test.model.UserInfo">
+		select * from user_info where user_id = #{user_id}
+	</select>
+	
+	<select id="getUserInfoList" resultType="com.test.model.UserInfo">
+		select * from user_info 
+		<where>
+			<if test="user_id!=null and user_id!=''">
+				user_id =#{user_id}
+			</if>
+			<if test="user_name!=null and user_name!=''">
+				and user_name=#{user_name}
+			</if>
+		</where>
+		order by insert_time desc
+		<if test="start!=null and end!=null and end!=0">
+			limit #{start},#{end}
+		</if>
+	</select>
+	
+	<select id="countUserInfoList" resultType="int" parameterType="Map">
+		select count(*) from user_info 
+		<where>
+			<if test="args!=null and args.menu_id!=null and args.menu_id!='0'">
+				menu_id = #{args.menu_id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getUserInfoById" resultType="com.test.model.UserInfo" parameterType="int">
+		select * from user_info where id=#{id}
+	</select>
+	
+	<update id="updateUserInfoById" parameterType="com.test.model.UserInfo">
+		update user_info set user_id=#{user_id} ,user_name = #{user_name},portrait_url =#{portrait_url},insert_time=#{insert_time},update_time=now()
+		where id=#{id}
+	</update>
+
+	<delete id="deleteUserInfoById" parameterType="int">
+		delete from user_info where id=#{id} 
+	</delete>
+	
+	<select id="getUserByIdPwd" resultType="com.test.model.UserInfo">
+		select * from user_info 
+		<where>
+			<if test="user_id!=null and user_id!=''">
+				user_id=#{user_id}
+			</if>
+			<if test="user_pwd!=null and user_pwd!=''">
+				and user_pwd=#{user_pwd}
+			</if>
+		</where>
+	</select>
+	
+</mapper> 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.MenuDAO">
+	<select id="getMenuList" resultType="com.test.model.Menu">
+		select * from menu
+	</select>
+	
+	<select id="getMenuById" parameterType="int" resultType="com.test.model.Menu">
+		select * from menu where id=#{id}
+	</select>
+	
+	<update id="updateMenuName" parameterType="com.test.model.Menu">
+		update menu set name=#{name} where id=#{id}
+	</update>
+	
+	<update id="updateMenuParent" parameterType="com.test.model.Menu">
+		update menu set parent_id=#{parent_id} where id=#{id}
+	</update>
+	
+	<delete id="deleteMenuById" parameterType="int">
+		delete from menu where id = ${id}
+	</delete>
+	
+	<delete id="deleteMenuCascade" parameterType="int">
+		DELETE FROM menu where id in
+		<foreach item="idItem" collection="list" open="(" separator="," close=")">
+			#{idItem}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteSolutionByMenuId" parameterType="int">
+		DELETE FROM solution where menu_id in
+		<foreach item="idItem" collection="list" open="(" separator="," close=")">
+			#{idItem}
+		</foreach>
+	</delete>
+	
+	<insert id="insertMenu" parameterType="com.test.model.Menu" useGeneratedKeys="true" keyProperty="sn">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+		insert into menu(name,url,parent_id,insert_time,update_time) values(#{name},#{url},#{parent_id},now(),now())
+	</insert>
+	
+	<update id="updateMenuById" parameterType="com.test.model.Menu">
+		update menu set name = #{name},url=#{url},parent_id = #{parent_id},insert_time=#{insert_time},update_time=#{update_time} where id=#{id}
+	</update>
+	
+</mapper> 

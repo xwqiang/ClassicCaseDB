@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.NoticeDAO">
+	<select id="getNoticeList" resultType="com.test.model.Notice" parameterType="int">
+		select * from notice 
+		order by insert_time desc
+		<if test="start!=null and end !=null and end!=0">
+			limit #{start}, #{end}
+		</if>
+	</select>
+	
+	
+	<select id="countNoticeList" resultType="int" parameterType="Map">
+		select count(*) from notice 
+	</select>
+	
+	<insert id="insertNotice" parameterType="com.test.model.Notice">
+		insert into notice(title,content,operator_id,insert_time,update_time) 
+		values
+		(#{title},#{content},#{operator_id},now(),now())
+	</insert>
+
+	<select id="getNoticeById" parameterType="int" resultType="com.test.model.Notice" >
+		select * from notice where id = #{id}
+	</select>
+
+	<update id="updateNoticeById">
+		update notice set title=#{title},content=#{content},update_time=now(),operator_id=#{operator_id} where id=#{id}
+	</update>
+	
+	<delete id="deleteNoticeById" parameterType="int">
+		delete from notice where id=#{id}
+	</delete>
+	
+</mapper> 

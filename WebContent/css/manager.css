@@ -1,0 +1,76 @@
+@charset "utf-8";
+/* CSS Document */
+
+#Container{}
+
+.manager_nav{ margin:14px 0 0; overflow:hidden; background:#58B4B8; height:40px;}
+.manager_nav li{ float:left; padding: 0 20px; margin-top:4px;}
+.manager_nav li a{ display:block; padding:0 10px; line-height:30px; color:#FFF;}
+.manager_nav li a:hover{ background:#00868B; }
+#ac-user .ac-user, #ac-notice .ac-notice, #ac-file .ac-file, #ac-role .ac-role, #ac-module .ac-module{ background:#00868B;}
+.manager_nav li .ac-return{background: #FFF;
+	filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr="#FFFFFF",endcolorstr="#F1F1F1"，gradienType="0");
+	filter: alpha(opacity=100 finishopacity=0 style=1 startx=0,starty=5,finishx=90,finishy=60);
+	background: -moz-linear-gradient(top, #FFFFFF,#F1F1F1);
+	background: -o-linear-gradient(top, #FFFFFF,#F1F1F1);
+	background: -webkit-gradient(linear,0 0,0 bottom,from(#FFFFFF),color-stop(0.5, #FFFFFF),to(#F1F1F1));
+	color:#00868B;
+}
+.manager_nav li .ac-return:hover{ color:#484C52; background: #FFF;}
+
+.mainbox{ background:#FFF; padding:20px 10px;}
+
+/*title*/
+.manager_title{ margin-bottom:10px;}
+.manager_title i{ display:block; background:url(../images/icon_question.gif) no-repeat left top; width:32px; height:32px; float:left;}
+.manager_title h2{ float:left; font:normal 18px/32px "微软雅黑"; color:#5998eb; padding-left:10px;}
+h3.min-title{ font-weight:normal; font-size:14px; padding:10px; border-bottom:1px solid #EDEDED;}
+
+input.ipt{ border:1px solid #ccc; padding:3px 4px;} /* input */
+.btn{ display:block; padding:0 8px; height:24px; line-height:24px; background:#A1A1A1; color:#FFF; border:none; cursor:pointer;}
+.btn:hover{ background:#838383;}    .btn:active{ background:#5e5e5e;}
+.ipt-check{height:15px; vertical-align:bottom; margin-bottom:2px; margin-bottom:-1px\9;}/*checkbox*/
+.ope-box{margin-bottom:10px; padding:10px 0; border-bottom:1px solid #EDEDED;}
+.ope-item{ display:inline-block; margin-right:10px;}
+
+.sear-box{ display:inline-block; padding:0 20px;}
+.sear-box form{ display:inline-block;}
+.sear-box .ipt_btn{ height:24px; line-height:22px;}
+
+/* 表格 */
+.tablestyle{ text-align:left; }
+.tablestyle th{ padding:0 10px; height:26px;
+	font-weight:normal; color:#999;
+	background:#F6F6F6; border:1px solid #CECECE; border-left:none; border-right:none;}
+.tablestyle td{ padding:0 10px; height:40px; border-bottom:1px solid #E4E4E4;}
+.td-time{ width:160px;}
+.noborder{ color:#555; border:none; width:auto;}
+.ipt-w100{ width:100px;}
+.ipt-w80{ width:80px;}
+.color-grey{ color:#bbb;}
+
+.td-btn{ display:inline-block; padding:3px 8px; color:#999;}
+.td-btn:hover{ background:#58b4b8; color:#fff}    .td-btn:hover:active{ background:#489598; color:#fff;}
+
+/* 表单 */
+
+.f-item{padding:8px 0; position:relative; overflow:hidden;}
+.f-left{ float:left; width:120px; text-align:right; color:#666;}
+.f-cont{ margin-left:130px; width:auto; height:auto;}
+.f-footer{margin:15px 10px;}
+.f-item.f-footer{ margin-left:130px;}
+.f-footer .btn{ display:inline-block; margin-right:10px;}
+
+/* notice-box */
+.notice-box li{ list-style:decimal; line-height:1.7; border-bottom:1px solid #EDEDED; padding-bottom:15px; margin-bottom:15px;}
+.notice-box h3{ font-weight:normal; font-size:14px; color:#00868B;}
+.notice-box h3 span{ padding-left:20px; color:#999;}
+.notice-cont{ margin:10px 0;}
+.notice-footer{ color:#999;}
+.notice-footer .btn{ display:inline-block; background:none; color:#999;}
+
+/* 角色分配用户 */
+.user-box{ margin:10px; overflow:hidden;}
+.user-box .item{ float:left; padding:4px 6px; width:75px; margin-right:10px;}
+.user-box .ckdItem{background-color: #DFF2F3; color:#3D777A;}
+	

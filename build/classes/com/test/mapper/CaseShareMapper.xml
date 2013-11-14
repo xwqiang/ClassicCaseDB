@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.CaseShareDAO">
+	<select id="getCaseShareList" resultType="com.test.model.CaseShare">
+		select c_share.*,u.user_name as user_name,s_type.name as server_name,c_type.name as type_name 
+		from case_share c_share 
+		left join user_info u on c_share.user_id=u.user_id left join server_type s_type on c_share.server_id = s_type.id 
+		left join case_type c_type on c_share.type_id=c_type.id
+		<where>
+			<if test="type_id!=null and type_id!=0">
+				c_share.type_id=#{type_id}
+			</if>
+			<if test="case_code!=null and case_code!=''">
+				and c_share.case_code=#{case_code}
+			</if>
+			<if test="user_id!=null and user_id!=''">
+				and c_share.user_id=#{user_id}
+			</if>
+			<if test="service_code!=null and service_code!=''">
+				and c_share.service_code=#{service_code}
+			</if>
+			<if test="server_id!=null and server_id!=0">
+				and c_share.server_id=#{server_id}
+			</if>
+			<if test="insert_time!=null and insert_time!=''">
+				and c_share.insert_time=#{insert_time}
+			</if>
+			<if test="title!=null and title!=''">
+				and c_share.title like concat('%',#{title},'%')
+			</if>
+		</where>
+		order by insert_time desc
+		<if test="start!=null and end !=null and end!=0">
+			limit #{start}, #{end}
+		</if>
+	</select>
+	
+	<select id="countCaseShareList" resultType="java.lang.Integer" parameterType="Map">
+		select count(*) from case_share 
+		<where>
+			<if test="args!=null and args.type_id!=null and args.type_id!=0">
+				type_id=#{args.type_id}
+			</if>
+			<if test="args!=null and args.case_code!=null and args.case_code!=''">
+				and case_code=#{args.case_code}
+			</if>
+			<if test="args!=null and args.user_id!=null and args.user_id!=''">
+				and user_id=#{args.user_id}
+			</if>
+			<if test="args!=null and args.service_code!=null and args.service_code!=''">
+				and service_code=#{args.service_code}
+			</if>
+			<if test="args!=null and args.server_id!=null and args.server_id!=0">
+				and server_id=#{args.server_id}
+			</if>
+			<if test="args!=null and args.insert_time!=null and args.insert_time!=''">
+				and insert_time=#{args.insert_time}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getCaseShareById" resultType="com.test.model.CaseShare" parameterType="int">
+		select c_share.*,u.user_name as user_name,s_type.name as server_name,c_type.name as type_name 
+		from case_share c_share 
+		left join user_info u on c_share.user_id=u.user_id left join server_type s_type on c_share.server_id = s_type.id 
+		left join case_type c_type on c_share.type_id=c_type.id
+		where c_share.id=#{id}
+	</select>
+	
+	<select id="generateCaseCode" parameterType="String" resultType="String">
+		select case_code from case_share where case_code like concat(#{dateString},"%") order by case_code desc limit 1
+	</select>
+	
+	<insert id="insertCaseShare"  parameterType="com.test.model.CaseShare">
+		insert into case_share(title,case_code,user_id,server_id,service_code,type_id,summa,analysize,deal_result,conclusion,comment,insert_time,update_time) 
+		values
+		(#{title},#{case_code},#{user_id},#{server_id},#{service_code},#{type_id},#{summa},#{analysize},#{deal_result},#{conclusion},#{comment},now(),now()) 
+	</insert>
+	
+	<delete id="deleteCaseShare" parameterType="int">
+		delete from case_share where id=#{id}
+	</delete>
+	
+	<update id="updateCaseShareById" parameterType="com.test.model.CaseShare">
+		update case_share set title =#{title},case_code=#{case_code},user_id=#{user_id},server_id=#{server_id},service_code=#{service_code},
+		type_id=#{type_id},summa=#{summa},analysize=#{analysize},deal_result=#{deal_result},conclusion=#{conclusion},comment=#{comment},update_time=now()) 
+	</update>
+</mapper> 

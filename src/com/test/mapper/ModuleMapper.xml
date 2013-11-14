@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.ModuleDAO">
+	<select id="getModuleList" resultType="com.test.model.Module">
+		select * from module 
+	</select>
+	
+	<insert id="insertModule" parameterType="com.test.model.Module" useGeneratedKeys="true" keyProperty="id">
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			select last_insert_id()
+		</selectKey>
+		insert into module(name,url,parent_id,insert_time,update_time) 
+		values(#{name},#{url},#{parent_id},#{insert_time},#{update_time})
+	</insert>
+	
+	<select id="getModuleById" resultType="com.test.model.Module">
+		select * from module where id=#{id}
+	</select>
+	
+	<update id="updateModule" parameterType="com.test.model.Module">
+		update module set name=#{name},url=#{url},parent_id=#{parent_id},insert_time=#{insert_time},update_time=now() where id=#{id}
+	</update>
+	
+	<delete id="deleteModuleById" parameterType="int">
+		delete from module where id=#{id}
+	</delete>
+	
+	<delete id="deleteModuleListByParentId" parameterType="com.test.model.Recursion">
+		delete from module where id in
+		<foreach item="id" collection="list" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+</mapper> 

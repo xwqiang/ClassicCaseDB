@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+	<!-- 管理端 -->
+		<mapper resource="com/test/mapper/MenuMapper.xml" />
+		<mapper resource="com/test/mapper/SolutionMapper.xml" />
+		<mapper resource="com/test/mapper/UserMapper.xml" />
+		<mapper resource="com/test/mapper/RemarkMapper.xml" />
+		<mapper resource="com/test/mapper/NoticeMapper.xml" />
+		<mapper resource="com/test/mapper/CaseShareMapper.xml" />
+		<mapper resource="com/test/mapper/ServerTypeMapper.xml" />
+		<mapper resource="com/test/mapper/CaseTypeMapper.xml" />
+		<mapper resource="com/test/mapper/UploadFileMapper.xml" />
+		<mapper resource="com/test/mapper/RoleMapper.xml" />
+		<mapper resource="com/test/mapper/ModuleMapper.xml" />
+		<mapper resource="com/test/mapper/RoleModuleMapper.xml" />
+		<mapper resource="com/test/mapper/UserRoleMapper.xml" />
+	</mappers>
+</configuration>

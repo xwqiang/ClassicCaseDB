@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.SolutionDAO">
+
+	<select id="getSolutionListByMenuId" resultType="com.test.model.Solution">
+		select s.*,u.user_name as user_name from solution s 
+		left join user_info u on s.user_id = u.user_id
+		<where>
+			<if test="menu_id!=null and menu_id!=''">
+				s.menu_id = #{menu_id}
+			</if>
+		</where>
+		 order by update_time desc
+		 <if test="start!=null and end !=null and end !=0">
+		 	limit #{start},#{end}
+		 </if>
+	</select>
+	
+	<select id="countSolutionListByMenuId" resultType="int" parameterType="Map">
+		select count(*) from solution 
+		<where>
+			<if test="args!=null and args.menu_id!=null and args.menu_id!='0'">
+				menu_id = #{args.menu_id}
+			</if>
+		</where>
+	</select>
+	
+	<select id="searchSolutions" parameterType="java.util.List" resultType="com.test.model.Solution">
+		select * from solution where 
+		<foreach item="key" collection="list" open="(" separator="or" close=")">
+			 concat(content,' ',title) like concat("%",#{key},"%") collate utf8_bin
+		</foreach>
+	</select>
+	
+	<select id="getHighRankingsolutions" parameterType="int" resultType="com.test.model.Solution">
+		select * from solution order by ranking desc limit #{top}
+	</select>
+	
+	<select id="getsolutionById" parameterType="int" resultType="com.test.model.Solution">
+		select s.*,u.user_name as user_name from solution s left join user_info u on s.user_id=u.user_id 
+		where s.id=#{id}
+	</select>
+	
+	<update id="updateSolutionById" parameterType="com.test.model.Solution">
+		update solution set title=#{title}, content =#{content} ,ranking=#{ranking} ,update_time=now() where id=#{id}
+	</update>
+
+	<insert id="insertSolution" parameterType="com.test.model.Solution">
+		insert into solution(menu_id,title,content,user_id,insert_time,update_time) values(#{menu_id},#{title} ,#{content},#{user_id},now(),now())
+	</insert>
+	
+	<delete id="deleteSolutionById" parameterType="int">
+		delete from solution where id=#{id}
+	</delete>
+
+</mapper> 

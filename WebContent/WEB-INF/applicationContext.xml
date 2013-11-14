@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+        ">
+        <!-- 
+    <context:property-placeholder location="classpath:dbconfig.properties"/>
+         -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:dbconfig.properties</value>  
+            </list>  
+        </property>  
+    </bean>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean> 
+	
+	<context:component-scan base-package="com.test.controller,com.test.service,com.hskj.manager" /> 
+	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="interceptors">  
+            <list>  
+                <bean class="com.core.interceptor.AuthInterceptor"/>  
+            </list>  
+        </property> 
+	</bean> 
+	
+	
+	<!-- 支持文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
+	<!-- 对静态资源文件的访问  方案 -->    
+	<mvc:default-servlet-handler/>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/main/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 总错误处理
+	-->  
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+	    <property name="defaultErrorView">    
+	        <value>error/error</value>  
+	    </property>  
+	    <property name="defaultStatusCode">    
+	        <value>500</value>  
+	    </property>     
+  		<property name="exceptionAttribute" value="exception"></property>  
+	    <property name="warnLogCategory">    
+	        <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>  
+	    </property>
+	</bean> 
+	
+	
+	
+	  
+	
+	
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.driverClassName}">
+		</property>
+		<property name="url" value="${db.url}">
+		</property>
+		<property name="username" value="${db.username}"></property>
+		<property name="password" value="${db.passwd}"></property>
+		<property name="maxActive" value="${db.maxActive}"></property>
+		<property name="initialSize" value="${db.initialSize}"></property>
+		<property name="maxWait" value="${db.maxWait}"></property>
+		<property name="maxIdle" value="${db.maxIdle}"></property>
+		<property name="removeAbandoned" value="true"></property>
+		<property name="removeAbandonedTimeout" value="${db.removeAbandonedTimeout}"></property>
+		
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="minEvictableIdleTimeMillis" value="3600000" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="configLocation" value="classpath:myBatis.xml"></property>
+		
+		<!--
+			该属性用来指定MyBatis的XML配置文件路径,跟Spring整合时，编写MyBatis映射文件的目的无非是配置一下typeAlias、setting之类的
+			元素。不用在其中指定数据源，或者事务处理方式。就算配置了也会被忽略。因为这些都是使用Spring中的配置
+			。当然如果你不打算添加typeAlias 之类的设置的话，你连MyBatis的配置文件都不用写，更不用配置这个属性了
+		-->
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	
+	
+	
+	<!-- 拦截器
+	 <bean id="SSOloginController" class="com.core.aop.SSOLogin"></bean>
+	 <bean id="authInterceptor" class="com.core.aop.AuthorityAOP"></bean>
+	<aop:config proxy-target-class="false">
+		<aop:pointcut id="pointcutx" expression="execution(* com.test.controller..*.*(..))"/>
+		<aop:aspect ref="authInterceptor">
+			<aop:before pointcut-ref="pointcutx" method="doBefore"/> 
+		</aop:aspect>
+	</aop:config>
+	 -->
+	 
+	 <import resource="applicationContext_beanDAO.xml" />
+	
+</beans>

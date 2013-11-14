@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.ServerTypeDAO">
+	<select id="getServerTypeList" resultType="com.test.model.ServerType">
+		select * from server_type 
+		<if test="start!=null and end !=null and end !=0">
+		 	limit #{start},#{end}
+		 </if>
+	</select>
+</mapper> 

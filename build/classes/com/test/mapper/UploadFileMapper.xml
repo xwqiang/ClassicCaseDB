@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+    <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mapper.UploadFileDAO">
+	<insert id="insertUploadFile" parameterType="com.test.model.UploadFile">
+		insert into upload_file(file_name,file_path,file_desc,file_type,user_id,insert_time,update_time) 
+		values(#{file_name},#{file_path},#{file_desc},#{file_type},#{user_id},now(),now())
+	</insert>
+	
+	<select id="getFileById" resultType="com.test.model.UploadFile">
+		select * from upload_file where id=#{id}
+	</select>
+	
+	<select id="getUploadFileList" resultType="com.test.model.UploadFile">
+		select * from upload_file
+	</select>
+	
+	<delete id="deleteUploadFileById">
+		delete from upload_file where id=#{id}
+	</delete>
+</mapper> 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration  SYSTEM "log4j.dtd">
+
+<log4j:configuration debug="true" threshold="all">
+	<appender name="infoLog" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="INFO" />
+		<param name="File" value="/usr/local/tomcat_ClassicCaseDB/logs/ClassicCaseDB_info.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss}  %5p  %x - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="errorLog" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="ERROR" />
+		<param name="File" value="/usr/local/tomcat_ClassicCaseDB/logs/ClassicCaseDB_err.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss}  %5p  %x - %m%n" />
+		</layout>
+	</appender>
+	<!-- 
+	<appender name="JDBCAppender" class="org.apache.log4j.jdbc.JDBCAppender">
+	     <param name="Threshold" value="ERROR" />
+	     <param name="URL" value="jdbc:mysql://192.168.5.132:3306/sms_client_new?useUnicode=true&amp;characterEncoding=GBK"/>
+	     <param name="user" value="root"/> 
+	     <param name="password" value="123456"/> 
+	     <param name="driver" value="com.mysql.jdbc.Driver"/>
+	     <layout class="org.apache.log4j.PatternLayout">
+	       <param name="ConversionPattern" value="insert into system_log_err(err_method,err_info,err_time,operator,corp_id) values(\'%X{url}\',\'%m\',\'%d{yyyy-MM-dd HH:mm:ss}\',\'%X{user_id}\',\'%X{corp_id}\')"/>
+	     </layout>
+ 	</appender>
+	 -->
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %d{MM-dd HH:mm:ss} %m (%F:%L) \n" />
+		</layout>
+	</appender>
+	
+	<category name="java.sql">
+		<priority value="debug" />
+	</category>
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="infoLog" />
+		<appender-ref ref="errorLog" />
+		<!-- 
+		<appender-ref ref="JDBCAppender" />
+		<appender-ref ref="STDOUT" />
+		 -->
+	</root>
+
+</log4j:configuration>

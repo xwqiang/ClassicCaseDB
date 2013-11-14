@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+
+body,h1,h2,h3,h4,h5,h6,ul,li,p,dl,dt,dd,form{ margin:0; padding:0; list-style:none}
+img{ border:none}
+a{ text-decoration:none}
+input,textarea,a{ outline:none;}
+.clear{ clear:both}
+
+html,body{ background:#58b4b8 url(../images/loginbg.gif) repeat left top;
+	font:normal 12px/1.5 "宋体", Arial, Verdana, sans-serif; color:#444444; position:relative; text-align:center;}
+.login_center{ background:url(../images/login_center.gif) no-repeat center top; width:100%; min-height:600px;}
+.login{ width:262px; margin:0 auto; text-align:center;}
+.h115{ height:115px;}
+
+form{ margin-top:66px; text-align:left;}
+.login_content{ background:#FFF; border:1px solid #70bcbe; border-radius:5px;}
+.l_item{ height:40px; padding:0 10px; clear:both;}
+.l_border{ border-bottom:1px solid #70bcbe;}
+.l_item label{ color:#428689; font-size:14px; font-weight:bold; display:block; float:left; height:40px; line-height:40px;}
+.l_item input{border:0; height:38px; margin:0; padding:0 10px; line-height:38px; color:#999;}
+.l_item input:focus{ color:#444;}
+.l_txt{ line-height:26px; color:#FFF; padding:0 5px;}
+.l_txt a{ color:#FFF;}   .l_txt a:hover{ text-decoration:underline;}
+
+.l_btn{ margin-top:20px;}
+.l_btn input{ width:260px; height:34px; color:#FFF; font-weight:bold; font-size:14px; border-radius:5px; cursor:pointer; border:1px solid #159196;}
+.btn{ background:#14bec7;
+	filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr="#14bec7",endcolorstr="#18a3aa"，gradienType="0"); 	/*IE*/
+	filter:alpha(opacity=100 finishopacity=0 style=1 startx=0,starty=5,finishx=90,finishy=60)
+	background:-moz-linear-gradient(top, #14bec7,#18a3aa);	/*FireFox*/
+	background:-o-linear-gradient(top, #14bec7,#18a3aa);	/*Opera*/
+    background:-webkit-gradient(linear,0 0,0 bottom,from(#14bec7),to(#18a3aa));	/*Chrome*/}
+.btn_up{background:#18a3aa;
+	filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr="#14bec7",endcolorstr="#14898f"，gradienType="0"); 	/*IE*/
+	filter:alpha(opacity=100 finishopacity=0 style=1 startx=0,starty=5,finishx=90,finishy=60)
+	background:-moz-linear-gradient(top, #14bec7,#14898f);	/*FireFox*/
+	background:-o-linear-gradient(top, #14bec7,#14898f);	/*Opera*/
+    background:-webkit-gradient(linear,0 0,0 bottom,from(#14bec7),to(#14898f));	/*Chrome*/
+	}
+.btn_down{background:#14898f;
+	filter:progid:DXImageTransform.Microsoft.gradient(startcolorstr="#14898f",endcolorstr="#14bec7"，gradienType="0"); 	/*IE*/
+	filter:alpha(opacity=100 finishopacity=0 style=1 startx=0,starty=5,finishx=90,finishy=60)
+	background:-moz-linear-gradient(top, #14898f,#14bec7);	/*FireFox*/
+	background:-o-linear-gradient(top, #14898f,#14bec7);	/*Opera*/
+    background:-webkit-gradient(linear,0 0,0 bottom,from(#14898f),to(#14bec7));	/*Chrome*/
+	}
