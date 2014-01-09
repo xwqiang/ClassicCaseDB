@@ -50,7 +50,7 @@ public class CaseShareController {
 		List<CaseType> caseTypeList = caseTypeService.getCaseTypeList();
 		//获取案例列表
 		List<CaseShare> caseShareList =caseShareService
-				.pagination(5, "type_id","case_code","user_id","service_code","server_id","insert_time","title")
+				.pagination(5)
 				.getCaseShareList(Integer.parseInt(type_id),case_code,user_id,service_code,Integer.parseInt(server_id),insert_time,title);
 		modelMap.addAttribute("caseShareList",caseShareList).addAttribute("serverTypeList",serverTypeList)
 		.addAttribute("caseTypeList",caseTypeList);

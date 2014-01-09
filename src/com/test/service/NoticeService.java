@@ -35,9 +35,9 @@ public class NoticeService extends IPageService{
 	 * @return
 	 */
 	@Override
-	public NoticeService pagination(int pageSize,String...args){
+	public NoticeService pagination(int pageSize){
 		HttpServletRequest request = SystemSession.getRequest();
-		page = initPage(request,pageSize,args);
+		page = initPage(request,pageSize);
 		return this;
 	}
 

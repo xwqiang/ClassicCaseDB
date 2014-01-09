@@ -31,9 +31,9 @@ public class CaseTypeService extends IPageService {
 	}
 
 	@Override
-	public CaseTypeService pagination(int pageSize, String... args) {
+	public CaseTypeService pagination(int pageSize) {
 		HttpServletRequest request = SystemSession.getRequest();
-		page = initPage(request,pageSize,args);
+		page = initPage(request,pageSize);
 		return this;
 	}
 }

@@ -36,9 +36,9 @@ public class SolutionSearchService extends IPageService{
 	 * @return
 	 */
 	@Override
-	public Page pagination(int pageSize,String...args){
+	public Page pagination(int pageSize){
 		HttpServletRequest request = SystemSession.getRequest();
-		page = initPage(request,pageSize,args);
+		page = initPage(request,pageSize);
 		return page;
 	}
 

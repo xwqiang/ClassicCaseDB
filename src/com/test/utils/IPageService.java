@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class IPageService {
 	private Map<String,Object> argsmap = new HashMap<String,Object>();
 	private final int SHOWLIST = 10;
-	private Page page;
+	protected Page page;
 	/**
 	 * @param request
 	 * @param qString 查询参数类似 -->  a=1&b=2 结构
 	 * @return Page
 	 */
-	public Page initPage(HttpServletRequest request,int pageSize,String... args){
+	public final Page initPage(HttpServletRequest request,int pageSize){
 		page = new Page();
 		
 		//1、 获取第几页 pageIndex
@@ -127,7 +127,7 @@ public abstract class IPageService {
 		return sb.toString();
 	}
 	public abstract int getTatal(Map<String,Object> p);
-	public abstract Object pagination(int pageSize,String...args);
+	public abstract Object pagination(int pageSize);
 	
 }
 

@@ -51,9 +51,9 @@ public class UserService  extends IPageService{
 	 * @param pageSize 每页显示多少条
 	 * @return UserService
 	 */
-	public UserService pagination(int pageSize,String...args){
+	public UserService pagination(int pageSize){
 		HttpServletRequest request = SystemSession.getRequest();
-		page = initPage(request,pageSize,args);
+		page = initPage(request,pageSize);
 		return this;
 	}
 	@Override

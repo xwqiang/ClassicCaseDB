@@ -31,9 +31,9 @@ public class CaseShareService extends IPageService {
 	}
 
 	@Override
-	public CaseShareService pagination(int pageSize, String... args) {
+	public CaseShareService pagination(int pageSize) {
 		HttpServletRequest request = SystemSession.getRequest();
-		page = initPage(request,pageSize,args);
+		page = initPage(request,pageSize);
 		return this;
 	}
 	public CaseShare getCaseShareById(int id) {

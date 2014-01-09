@@ -22,7 +22,7 @@ public class UserInfoController {
 	
 	@RequestMapping(value="listUserInfo")
 	public String listUserInfo(String user_id,String user_name,ModelMap modelMap){
-		List<UserInfo> userList = userService.pagination(15,"user_id","user_name").getUserInfoList(user_id,user_name);
+		List<UserInfo> userList = userService.pagination(15).getUserInfoList(user_id,user_name);
 		modelMap.addAttribute("userlist",userList);
 		return "manager/userInfo/listUserInfo";
 	}

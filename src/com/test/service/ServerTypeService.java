@@ -29,7 +29,7 @@ public class ServerTypeService extends IPageService {
 		return 0;
 	}
 	@Override
-	public Object pagination(int pageSize, String... args) {
+	public Object pagination(int pageSize) {
 		// TODO Auto-generated method stub
 		return null;
 	}

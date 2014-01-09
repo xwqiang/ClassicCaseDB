@@ -30,7 +30,7 @@ public class UserRoleController {
 	
 	@RequestMapping(value="listUserRole")
 	public String listUserRole(@RequestParam(value="user_id",required=false) String user_id,ModelMap modelMap){
-		List<UserInfo> userList = userService.pagination(15,"user_id").getUserInfoList(user_id,null);
+		List<UserInfo> userList = userService.pagination(15).getUserInfoList(user_id,null);
 		modelMap.addAttribute("userlist",userList);
 		return "manager/user_role/listUserRole";
 	}

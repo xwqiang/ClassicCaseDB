@@ -32,7 +32,7 @@ public class SolutionController {
 	
 	@RequestMapping(value="/getSolutionListByMenuId.do")
 	public String getSolutionListByMenuId(int menu_id,ModelMap modelMap) {
-		List<Solution> list = solutionService.pagination(5,"menu_id").getSolutionListByMenuId(menu_id);
+		List<Solution> list = solutionService.pagination(5).getSolutionListByMenuId(menu_id);
 		Menu menu = menuService.getMenuById(menu_id);
 		modelMap.addAttribute("menu",menu).addAttribute("solutionlist",list);
 		return "solutionlist";
@@ -126,7 +126,7 @@ public class SolutionController {
 			return "forward";
 		}
 		List<Solution> list = solutionSearchService.searchSolutions(key);
-		List<Solution> search_list = new SearchUtil().searchSolution(key,list,solutionSearchService.pagination(10, "key"));
+		List<Solution> search_list = new SearchUtil().searchSolution(key,list,solutionSearchService.pagination(10));
 		modelMap.addAttribute("list", search_list);
 		return "searchList";
 	}
