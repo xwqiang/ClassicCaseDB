@@ -18,6 +18,7 @@ import com.test.service.MenuService;
 import com.test.service.SolutionSearchService;
 import com.test.service.SolutionService;
 import com.test.service.remark.RemarkService;
+import com.test.utils.HtmlMatcher;
 import com.test.utils.SearchUtil;
 @Controller
 public class SolutionController {
@@ -126,6 +127,7 @@ public class SolutionController {
 			return "forward";
 		}
 		List<Solution> list = solutionSearchService.searchSolutions(key);
+		HtmlMatcher.filt(list);
 		List<Solution> search_list = new SearchUtil().searchSolution(key,list,solutionSearchService.pagination(10));
 		modelMap.addAttribute("list", search_list);
 		return "searchList";

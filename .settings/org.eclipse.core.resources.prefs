@@ -1,3 +1,4 @@
+#Thu Feb 27 18:01:01 CST 2014
 eclipse.preferences.version=1
 encoding//WebContent/common/kindEditor.jsp=UTF-8
 encoding//WebContent/common/navigation/navigator.jsp=UTF-8
@@ -8,3 +9,4 @@ encoding//WebContent/js/kindeditor-4.1.7/plugins/image/image.js=UTF-8
 encoding//WebContent/js/validateEngine=UTF-8
 encoding//src/com/test/utils/ImageTools.java=UTF-8
 encoding//src/com/test/utils/UploadUtil.java=UTF-8
+encoding/<project>=gbk
